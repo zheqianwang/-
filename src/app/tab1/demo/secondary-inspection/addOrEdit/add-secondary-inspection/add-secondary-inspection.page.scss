@@ -1,0 +1,23 @@
+.label_size {
+  font-size: 14px;
+  color: #082744;
+}
+.label_color_size {
+  color: #98a4b3;
+  font-size: 14px;
+  font-family: Arial, Verdana, Sans-serif;
+}
+.left {
+  float: left;
+}
+.right {
+  float: right;
+  text-align: right;
+}
+.bottom_button {
+  margin: 8px 24px;
+}
+// 时间 List 样式
+.date-picker-list .am-list-item .am-list-line .am-list-extra {
+  flex-basis: initial;
+}

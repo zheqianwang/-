@@ -1,0 +1,25 @@
+//功能总体背景容器
+.content-background {
+  background-color: #ebecef;
+  height: 100%;
+  overflow-y: auto;
+}
+
+//布局的头部的容器框
+.content-header {
+  padding: 8px;
+  padding-bottom: 1px;
+
+  .content-div {
+    background-color: #f5f7f9;
+    //border-radius: 4px 4px 0 0;
+  }
+}
+
+//布局中表格的容器框
+.content-table {
+  margin: 0 8px 8px 8px;
+  padding: 8px;
+  background-color: #fefefe;
+  //border-radius: 0 0 4px 4px;
+}

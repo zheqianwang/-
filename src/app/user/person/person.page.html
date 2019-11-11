@@ -1,0 +1,82 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-icon name="arrow-back" class="bar-btn" (click)="nav.pop()" slot="start"></ion-icon>
+        <ion-title>个人中心</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-card>
+        <ion-card-header>
+            <ion-card-title>
+                <ion-item>
+                    <ion-label style="text-align: end">
+                        {{personDetail.name}}
+                    </ion-label>
+                    <ion-thumbnail slot="start">
+                        <img src="../../../assets/img/man.png">
+                    </ion-thumbnail>
+                </ion-item>
+            </ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+            <ion-item>
+                <ion-label>状态:</ion-label>
+                <ion-note slot="end" color="primary">
+               <span *ngIf="personDetail?.state=='0 '"
+                     style="font-size:16px;color: gold;font-weight: bold">未激活</span>
+                    <span *ngIf="personDetail?.state=='1 '"
+                          style="font-size:16px;color: #52c41a;font-weight: bold">正常</span>
+                    <span *ngIf="personDetail?.state=='2 '"
+                          style="font-size:16px;color: #ff2222;font-weight: bold">禁用中</span>
+                </ion-note>
+            </ion-item>
+
+          <ion-item>
+            <ion-label>角色:</ion-label>
+            <ion-note slot="end" color="primary" class="fontsize16">
+              <span *ngIf="personDetail['role']==='admin'" >管理员</span>
+              <span *ngIf="personDetail['role']==='user'" >普通用户</span>
+              <span *ngIf="personDetail['role']===''" >缺省角色</span>
+            </ion-note>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>工厂:</ion-label>
+            <ion-note slot="end" color="primary" class="fontsize16">
+              <span>{{personDetail.factory?personDetail.factory.name:'默认工厂'}}</span>
+            </ion-note>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>密级:</ion-label>
+            <ion-note slot="end" color="primary" class="fontsize16">
+              <span *ngIf="personDetail.seclevel=='PUBLIC'">公开</span>
+            </ion-note>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>注册时间:</ion-label>
+            <ion-note slot="end" color="primary" class="fontsize16">
+              <span>{{personDetail['signtime']}}</span>
+            </ion-note>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>登录密码:</ion-label>
+            <ion-note slot="end" color="primary" class="fontsize16">
+              <div>
+                <span class="setted">已设置</span>
+&nbsp;
+                <span class="edit">修改</span>
+              </div>
+            </ion-note>
+          </ion-item>
+
+        </ion-card-content>
+    </ion-card>
+
+
+</ion-content>

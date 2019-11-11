@@ -1,0 +1,198 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import "~@ionic/angular/css/display.css";
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+.gray {
+  --background: rgb(240, 242, 243);
+}
+
+.bar-btn {
+  font-size: 24px;
+  margin: 0 16px;
+}
+
+.bottom50px {
+  --offset-bottom: -50px !important;
+}
+
+/**
+* 工序报工第二页
+**/
+// 工序报工第二页 ‘自检日期’、‘互检日期’ 字段样式
+#itemSizeAndColor > div.am-list-line > div.am-list-content > label {
+  color: #98a4b3;
+  font-size: 14px;
+  font-family: Arial, Verdana, Sans-serif;
+}
+
+// ‘自检日期’ 时间位置
+#itemSizeAndColor > div.am-list-line {
+  //padding: 0px 10px 0px 0px;
+}
+
+// ‘自检日期’ 时间颜色，大小
+#itemSizeAndColor > div.am-list-line > div.am-list-extra {
+  color: #000000;
+  font-size: 14px;
+}
+
+
+// 各模块 第一页 搜索框样式
+#searchBarStyle > div > input {
+  background: #ffffff;
+  border-radius: 18px;
+  text-align: center;
+}
+
+// 各模块 第一页 搜索框的图标
+#searchBarStyle > div > ion-icon {
+  position: absolute;
+  left: 50%;
+  margin-left: -40px;
+}
+
+// 文档第一页 搜索框背景色
+#SearchBarStyle > form {
+  background-color: #0b82f1;
+  //  20191011 添加左边筛选条件修改的样式
+  width: 92%;
+  float: right;
+}
+
+// 文档第一页 搜索框圆角
+#SearchBarStyle > form > div.am-search-input {
+  border-radius: 14px;
+}
+
+//文档第一页 搜索框 后面的‘取消’颜色
+#SearchBarStyle > form > div.cancel.am-search-cancel {
+  color: #ffffff;
+}
+
+// 各模块第一页筛选条件的宽度
+#sidebar {
+  width: 60%;
+}
+
+
+/**
+生产进度第二页生产进度条样式
+*/
+// 整体位置
+#stepsStyle_customize {
+  padding: 10px 0px;
+}
+
+// 进度条图标的位置
+#stepsStyle_customize > step > div > div.am-steps-item-icon {
+  margin: 0px 5px 0px 39px;
+}
+
+// 生产进度条之间的横线长度
+#stepsStyle_customize > step > div > div.am-steps-item-tail {
+  padding: 0px 7px 0px 15px !important;
+}
+
+// 进行中的图标背景色
+.am-steps-item-icon {
+  background-color: #23b66e !important;
+  border-color: #23b66e !important;
+}
+
+// 进行中 字体样式
+#进行中 > div > div.am-steps-item-content > div.am-steps-item-title {
+  color: #23b66e;
+  //font-size: 14px;
+}
+
+// 步骤描述 字体样式
+.am-steps-item-description {
+  font-size: 10px;
+  color: #bbc2ca !important;
+}
+
+//进度条步骤字体大小
+.am-steps-item-title {
+  font-size: 14px;
+}
+
+
+.am-list-content {
+  color: #98a4b3 !important;
+  font-size: 14px !important;
+  font-family: Arial, Verdana, Sans-serif;
+}
+
+.am-list-extra {
+  color: #082744 !important;
+  font-size: 14px !important;
+  font-family: Arial, Verdana, Sans-serif;
+}
+
+// 下面卡片 输入框的位置大小
+#reportCard_customize > cardbody > inputitem
+#reportCard2_customize > cardbody > inputitem {
+  width: 95%;
+}
+
+
+// 下面卡片 右边输入框的样式
+#reportCard_customize > cardbody > inputitem > div > div.am-input-control > div > input
+#reportCard2_customize > cardbody > inputitem > div > div.am-input-control > div > input {
+  text-align: right;
+  font-size: 14px;
+  color: #082744;
+  font-family: Arial, Verdana, Sans-serif;
+}
+
+//ion-select 组件的样式，在模块第二页的选择项中用到
+.in-item {
+  font-size: 14px;
+  color: #082744;
+  font-weight: 400;
+}
+
+// AntD 日期组件右边的箭头隐藏，以及组件位置调整
+.am-list-item,
+.am-list-item:last-child,
+.am-list-item.am-list-item-middle .am-list-line {
+  padding: 0px;
+}
+
+.am-list-item .am-list-line .am-list-arrow-horizontal {
+  display: none;
+}
+
+
+// Ionic时间组件宽度
+.picker-wrapper {
+  max-width: 100% !important;
+}
+
+// Ionic时间组件各列居中显示
+.picker-opts-left,
+.picker-opts-right {
+  justify-content: center !important;
+}
+
+

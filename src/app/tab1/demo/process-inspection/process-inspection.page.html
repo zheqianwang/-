@@ -1,0 +1,116 @@
+<!-- 工序检验 -->
+<div class="ion-page" main>
+    <ion-header>
+        <ion-toolbar color="primary">
+            <ion-icon name="arrow-back" class="bar-btn" (click)="back()" slot="start"></ion-icon>
+            <ion-title (click)="backToTop()">工序检验</ion-title>
+            <ion-icon name="qr-scanner" class="bar-btn" slot="end" (click)="scan()"></ion-icon>
+        </ion-toolbar>
+
+        <div style="width: 100%; height: 44px; background-color: #0B82F1;" *ngIf="!drawOpen">
+            <!--        <ion-img src="assets/img/filter/filter2.svg" class="filter2" (click)="onOpenChange($event)"></ion-img>-->
+            <ion-img src="assets/img/filter/filter2.svg" class="filter2" (click)="openMenu()"></ion-img>
+            <!-- 搜索框 - 新版 -->
+            <SearchBar id="SearchBarStyle" style="background: #0B82F1;" placeholder="请搜索..." [(ngModel)]="searchValue"
+                       (onSubmit)="search()" (onCancel)="cancel()">
+            </SearchBar>
+        </div>
+    </ion-header>
+
+    <!-- 第三版，朱老师设计 -->
+    <ion-content *ngIf="viewList">
+        <ion-card *ngFor="let item of viewList" [routerLink]="['add']" [queryParams]="{id:item.id}"
+                  style="margin: 5px 16px;">
+            <ion-card-header>
+                <ion-label
+                        style="width: 60%; float: left; font-size: 17px; color: #082744;font-family: Arial,Verdana,Sans-serif">
+                    <b>{{item.projectid ? item.projectid.name : '暂无'}}</b>
+                </ion-label>
+                <ion-label style="width: 40%; float: right; text-align: right;font-size: 12px;color: #98a4b3;">
+                    {{item.opnum ? item.opnum : '暂无'}}{{item.opname ? item.opname : '暂无'}}
+                    -{{item.qty ? item.qty : '暂无'}}件
+                </ion-label>
+            </ion-card-header>
+            <ion-card-content style="padding: 10px 20px;">
+                <ion-label>
+                    <span style="width: 60%; height: 19px; overflow: hidden; float: left;font-size: 14px;color: #98a4b3;">{{item.billcode ? item.billcode : '暂无'}}</span>
+                    <span *ngIf="item.state == '0'"
+                          style="width: 40%; float: right; text-align: right;font-size: 14px;color: #F3B100;"
+                    >编制</span>
+                    <span *ngIf="item.state == '1'"
+                          style="width: 40%; float: right; text-align: right;font-size: 14px;color: #23B66E;"
+                    >确认</span>
+                </ion-label>
+                <ion-label style="font-size: 12px; color: #bbc2ca;">
+                    {{item.materialid ? item.materialid.name : '暂无'}}&nbsp;/&nbsp;{{item.materialid ? item.materialid.code : '暂无'}}</ion-label>
+            </ion-card-content>
+        </ion-card>
+
+        <ion-infinite-scroll (ionInfinite)="doInfinite($event)" threshold="0%">
+            <ion-infinite-scroll-content loadingSpinner="{{loadingSpinner}}"
+                                         loadingText="{{loadingMoreText}}"></ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+
+    </ion-content>
+
+    <!-- 页面没有加载出来时，显示骨架屏 -->
+    <ion-content *ngIf="!viewList">
+        <!--        <app-skeleton-screen [noData]="noData"></app-skeleton-screen>-->
+        <app-loading [noData]="noData"></app-loading>
+    </ion-content>
+
+</div>
+
+<!-- 筛选条件 -->
+<ion-menu side="start" swipe-gesture="false" type="overlay" (ionDidClose)="filter()">
+    <ion-header>
+        <ion-toolbar translucent>
+            <ion-title>筛选条件</ion-title>
+        </ion-toolbar>
+    </ion-header>
+    <ion-content>
+        <ion-list>
+            <ion-item *ngFor="let entry of checkboxData; let i = index">
+                <ion-label>{{entry.name}}</ion-label>
+                <ion-checkbox slot="end" [(ngModel)]="entry.checked"></ion-checkbox>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-menu>
+
+
+<!--    显示筛选条件的抽屉-暂时不用 -->
+<!--<Drawer-->
+<!--        class="my-drawer"-->
+<!--        [sidebar]="sidebar"-->
+<!--        [open]="drawOpen"-->
+<!--        [dragToggleDistance]="60"-->
+<!--        (onOpenChange)="onOpenChange($event)"-->
+<!--&gt;-->
+<!--</Drawer>-->
+<!--<ng-template #sidebar>-->
+<!--    <ion-list style="margin: 44px 0px 0px 0px;height: 100%;">-->
+<!--        <h3 style="text-align: center;">筛选条件</h3>-->
+<!--        &lt;!&ndash;        这是多选框&ndash;&gt;-->
+<!--        &lt;!&ndash;        <ion-item *ngFor="let entry of checkboxData; let i = index">&ndash;&gt;-->
+<!--        &lt;!&ndash;            <ion-label>{{entry.name}}</ion-label>&ndash;&gt;-->
+<!--        &lt;!&ndash;            <ion-checkbox slot="end" [(ngModel)]="entry.checked"></ion-checkbox>&ndash;&gt;-->
+<!--        &lt;!&ndash;        </ion-item>&ndash;&gt;-->
+
+<!--        <ion-radio-group allow-empty-selection (ionChange)="radioGroupChange($event)">-->
+<!--            <ion-item *ngFor="let entry of checkboxData; let i = index">-->
+<!--                <ion-label>{{entry.name}}</ion-label>-->
+<!--                <ion-radio slot="end" color="primary" [checked]="entry.checked"-->
+<!--                           (ionSelect)="ionselect(entry)"></ion-radio>-->
+<!--            </ion-item>-->
+<!--        </ion-radio-group>-->
+<!--    </ion-list>-->
+<!--</ng-template>-->
+
+
+<!-- <ion-footer> -->
+<!-- <ion-toolbar> -->
+<!-- 分页码 -->
+<!-- <Pagination class="wdcxfy" [total]="total" [current]="current" (onChange)="pageChange($event)"></Pagination> -->
+<!-- </ion-toolbar> -->
+<!-- </ion-footer> -->

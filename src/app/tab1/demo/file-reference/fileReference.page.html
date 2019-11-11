@@ -1,0 +1,91 @@
+<!-- 第三版，朱老师设计 -->
+<div class="ion-page" main>
+    <ion-header>
+        <ion-toolbar color="primary">
+            <ion-icon name="arrow-back" class="bar-btn" (click)="back()" slot="start"></ion-icon>
+            <ion-title (click)="backToTop()">文档查询</ion-title>
+            <ion-icon name="qr-scanner" class="bar-btn" slot="end" (click)="scan()"></ion-icon>
+        </ion-toolbar>
+        <div style="width: 100%; height: 44px; background-color: #0B82F1;" *ngIf="!drawOpen">
+            <!--            <ion-img src="assets/img/filter/filter2.svg" class="filter2" (click)="onOpenChange($event)"></ion-img>-->
+            <ion-img src="assets/img/filter/filter2.svg" class="filter2" (click)="openMenu()"></ion-img>
+            <SearchBar id="SearchBarStyle" style="background: #0B82F1;" placeholder="请搜索..." [(ngModel)]="searchValue"
+                       (onSubmit)="search()" (onCancel)="cancel()">
+            </SearchBar>
+        </div>
+    </ion-header>
+
+    <ion-content *ngIf="viewList">
+        <ion-card *ngFor="let item of viewList" style="margin: 5px 16px;" (click)="skip(item)">
+            <ion-card-header style="padding: 20px 20px 0px; width: 90%;">
+                <ion-label class="labelY">
+                    <b>{{item.modmfileinfo.name}}</b>
+                </ion-label>
+            </ion-card-header>
+            <ion-card-content style="padding: 10px 20px;">
+                <ion-label>
+                    <span style="width: 60%; float: left;font-size: 14px;color: #98a4b3;">{{item.modmfileinfo.code}}</span>
+                    <span style="width: 40%; float: right; text-align: right;font-size: 14px;color: #98a4b3;">
+          <ion-icon name="arrow-forward"></ion-icon>
+        </span>
+                </ion-label>
+                <ion-label style="font-size: 12px; color: #bbc2ca;">
+                    {{item.modmfileinfo.createtime | date:'yyyy-MM-dd' }}&nbsp;/&nbsp;{{item.modmfileinfo.filesize}}&nbsp;/&nbsp;{{item.modmfileinfo.modmfiletype ? item.modmfileinfo.modmfiletype.name : ""}}
+                </ion-label>
+            </ion-card-content>
+        </ion-card>
+
+        <ion-infinite-scroll (ionInfinite)="doInfinite($event)" threshold="0%">
+            <ion-infinite-scroll-content loadingSpinner="{{loadingSpinner}}"
+                                         loadingText="{{loadingMoreText}}"></ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+
+    </ion-content>
+    <!-- 页面没有加载出来时，显示骨架屏 -->
+    <!--        <ion-content *ngIf="!viewList">-->
+    <!--            <app-skeleton-screen [noData]="noData"></app-skeleton-screen>-->
+    <!--        </ion-content>-->
+    <ion-content *ngIf="!viewList">
+        <app-loading [noData]="noData"></app-loading>
+    </ion-content>
+</div>
+
+<!-- 筛选条件 -->
+<ion-menu side="start" swipe-gesture="false" type="overlay" (ionDidClose)="filter()">
+    <ion-header>
+        <ion-toolbar translucent>
+            <ion-title>筛选条件</ion-title>
+        </ion-toolbar>
+    </ion-header>
+    <ion-content>
+        <ion-list>
+            <ion-item *ngFor="let entry of checkboxData; let i = index">
+                <ion-label>{{entry.name}}</ion-label>
+                <ion-checkbox slot="end" [(ngModel)]="entry.checked"></ion-checkbox>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-menu>
+
+<!--    显示筛选条件的抽屉-暂时不用，因为会卡顿 -->
+<!--<Drawer-->
+<!--        class="my-drawer"-->
+<!--        [sidebar]="sidebar"-->
+<!--        [open]="drawOpen"-->
+<!--        [dragToggleDistance]="60"-->
+<!--        (onOpenChange)="onOpenChange($event)"-->
+<!--&gt;-->
+<!--</Drawer>-->
+<!--<ng-template #sidebar>-->
+<!--    <ion-list style="margin: 44px 0px 0px 0px;height: 100%;">-->
+<!--        <h3 style="text-align: center;">筛选条件</h3>-->
+<!--        <ion-item *ngFor="let entry of checkboxData; let i = index">-->
+<!--            <ion-label>{{entry.name}}</ion-label>-->
+<!--            <ion-checkbox slot="end" [(ngModel)]="entry.checked"></ion-checkbox>-->
+<!--        </ion-item>-->
+<!--    </ion-list>-->
+<!--</ng-template>-->
+
+
+
+

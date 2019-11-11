@@ -1,0 +1,24 @@
+{
+	"name":"name",
+	"manufacturer":"123",
+	"date":"2019-02-10",
+	"batch":"LC201801220001",
+	"proname":"404钢锻",
+	"unit":"山东钢材厂",
+	"scnumber":"3356p",
+	"cpptqk":[
+		{"id":"1","name":"壳体","number":"1","batch":"1","mass":"Large","sum":"1","Manufactor":"1","status":"1","remarks":"1"},
+		{"id":"2","name":"aaa","number":"2","batch":"1","mass":"Large","sum":"1","Manufactor":"1","status":"1","remarks":"1"},
+		{"id":"3","name":"bbb","number":"3","batch":"1","mass":"Large","sum":"1","Manufactor":"1","status":"1","remarks":"1"},
+		{"id":"4","name":"ccc","number":"4","batch":"1","mass":"Large","sum":"1","Manufactor":"1","status":"1","remarks":"1"}
+	],
+	"yclqk":[
+		{"id":"1","name":"aaa","number":"1","batch":"2","mass":"Large","sum":"2"},
+		{"id":"2","name":"bbb","number":"2","batch":"2","mass":"Large","sum":"2"}
+	],
+	"clkxncs":[
+		{"id":"1","name":"aaa","number":"3","batch":"3","mass":"Large","sum":"3"},
+		{"id":"2","name":"bbb","number":"4","batch":"4","mass":"Large","sum":"4"},
+		{"id":"3","name":"ccc","number":"5","batch":"5","mass":"Large","sum":"5"}
+	]
+}

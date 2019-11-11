@@ -1,0 +1,29 @@
+.card_content {
+  padding: 0px;
+}
+.card_content ion-label span {
+  color: red;
+}
+.label_size {
+  font-size: 14px;
+  color: #082744;
+}
+.label_color_size {
+  color: #98a4b3;
+  font-size: 14px;
+  font-family: Arial, Verdana, Sans-serif;
+}
+.left {
+  float: left;
+}
+.right {
+  float: right;
+  text-align: right;
+}
+//生产进度的进度条组件实现可以左右滑动
+.stepsStyle_class{
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+}

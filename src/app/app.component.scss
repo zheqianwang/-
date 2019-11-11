@@ -1,0 +1,19 @@
+// App Styles
+// ----------------------------------------------------------------------------
+// Put style rules here that you want to apply to the entire application. These 
+// styles are for the entire app and not just one component. Additionally, this 
+// file can hold Sass mixins, functions, and placeholder classes to be imported 
+// and used throughout the application.
+
+/**************** 引导页样式 ***************/
+#yindaoye .swiper-slide {
+  display: block;
+}
+#yindaoye ion-slide > h2 {
+  margin-top: 2.8rem;
+}
+#yindaoye ion-slide > img {
+  max-height: 50%;
+  max-width: 60%;
+  margin: 36px 0;
+}

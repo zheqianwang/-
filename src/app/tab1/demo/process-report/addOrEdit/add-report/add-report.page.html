@@ -1,0 +1,134 @@
+<!--工序报工 第二页 朱老师设计，用 AntD 组件实现,方便实现 时间选择的样式  -->
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-icon name="arrow-back" class="bar-btn" (click)="back()" slot="start"></ion-icon>
+        <!--        <ion-buttons slot="start">-->
+        <!--            <ion-back-button text="" ></ion-back-button>-->
+        <!--        </ion-buttons>-->
+        <ion-title
+                *ngIf="currentPageData">{{currentPageData.mdproject ? currentPageData.mdproject.name : ''}}</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content *ngIf="currentPageData">
+    <Card id="reportCard_customize" style="margin: 10px 24px;box-shadow: 0 4px 16px rgba(0,0,0,.12);">
+        <CardBody>
+            <List [renderHeader]="renderHeader">
+                <ListItem [extra]="currentPageData.mdproject ? currentPageData.mdproject.name : '暂无'">项目信息</ListItem>
+            </List>
+            <List [renderHeader]="renderHeader">
+                <ListItem [extra]="currentPageData.batch ? currentPageData.batch : '暂无'">批次</ListItem>
+            </List>
+            <List [renderHeader]="renderHeader">
+                <ListItem [extra]="currentPageData.mdmaterials ? currentPageData.mdmaterials.name : '暂无'">产品信息
+                </ListItem>
+            </List>
+            <List [renderHeader]="renderHeader">
+                <ListItem
+                        [extra]="currentPageData.opnum ? currentPageData.opnum : '暂无' +currentPageData.opname ? currentPageData.opname : '暂无'">
+                    工序信息
+                </ListItem>
+            </List>
+            <List [renderHeader]="renderHeader">
+                <ListItem [extra]="currentPageData.planenddate ? currentPageData.planenddate : '暂无'">计划日期</ListItem>
+            </List>
+            <List [renderHeader]="renderHeader">
+                <ListItem [extra]="currentPageData.qty ? currentPageData.qty : '暂无'">数量</ListItem>
+            </List>
+            <List [renderHeader]="renderHeader">
+                <ListItem [extra]="currentPageData.actualenddate ? currentPageData.actualenddate : '暂无'">完成日期</ListItem>
+            </List>
+        </CardBody>
+    </Card>
+    <Card id="reportCard2_customize" style="margin: 10px 24px;box-shadow: 0 4px 16px rgba(0,0,0,.12);">
+        <CardBody style="padding: 15px 6px 6px 0px;">
+            <ion-item>
+                <ion-label class="label_color_size left"><span style="color: red;">*</span>完成数量</ion-label>
+                <ion-input class="input_style" name="qty" pattern="'^-?[1-9]\d*$'" placeholder="请输入..."
+                           required
+                           inputmode="numeric" type="number" [(ngModel)]="putData.qty">
+                </ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label class="label_color_size left"><span style="color: red;">*</span>加工工人</ion-label>
+                <ion-select placeholder="请选择..." multiple="true" cancelText="取消" okText="确定"
+                            (ionChange)="workerChange($event)">
+                    <ion-select-option *ngFor="let h of help" [value]="h.id">{{h.name}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label class="label_color_size left"><span style="color: red;">*</span>加工设备</ion-label>
+                <ion-select placeholder="请选择..." cancelText="取消" okText="确定" multiple="true"
+                            (ionChange)="equChange($event)">
+                    <ion-select-option *ngFor="let eh of equipmentHelp" [value]="eh.id">{{eh.name}}</ion-select-option>
+                    <!--                    <ion-select-option value="sbmc2">设备名称2</ion-select-option>-->
+                    <!--                    <ion-select-option value="sbmc3">设备名称3</ion-select-option>-->
+                    <!--                    <ion-select-option value="sbmc4">设备名称4</ion-select-option>-->
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label class="label_color_size left"><span style="color: red;">*</span>自检人</ion-label>
+                <ion-select placeholder="请选择..." cancelText="取消" okText="确定" [(ngModel)]="putData.selfchecker.id">
+                    <ion-select-option *ngFor="let h of help" [value]="h.id">{{h.name}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <!--            AntD组件 -->
+            <!--            <ion-item style="width: 100%;">-->
+            <!--                <List class="date-picker-list" style="width: 100%;">-->
+            <!--                    <ListItem id="itemSizeAndColor" name="selfchecktime" DatePicker-->
+            <!--                              [extra]="strToDate(putData.selfchecktime)"-->
+            <!--                              [arrow]="'horizontal'" [mode]="'date'"-->
+            <!--                              (onOk)="onOk($event,'自检日期')">-->
+            <!--                        <label><span style="color: red">*</span>自检日期</label>-->
+            <!--                    </ListItem>-->
+            <!--                </List>-->
+            <!--            </ion-item>-->
+
+            <!--            Ionic组件 -->
+            <ion-item>
+                <ion-label class="label_color_size"><span style="color: red">*</span>自检日期</ion-label>
+                <ion-datetime doneText="完成" cancelText="取消" displayFormat="YYYY-MM-DD"
+                              cancelable="false"
+                              [(ngModel)]="putData.selfchecktime"></ion-datetime>
+            </ion-item>
+            <ion-item>
+                <ion-label class="label_color_size left"><span style="color: red;">*</span>互检人</ion-label>
+                <ion-select placeholder="请选择..." cancelText="取消" okText="确定" [(ngModel)]="putData.mutualchecker.id">
+                    <ion-select-option [value]="h.id" *ngFor="let h of help">{{h.name}} </ion-select-option>
+                </ion-select>
+            </ion-item>
+            <!--            暂时不用-->
+            <!--            <ion-item style="width: 100%;">-->
+            <!--                <List class="date-picker-list" style="width: 100%;">-->
+            <!--                    <ListItem id="itemSizeAndColor" name="mutual_inspection_date2" DatePicker-->
+            <!--                              [extra]="strToDate(putData.mutualchecktime)"-->
+            <!--                              [arrow]="'horizontal'"-->
+            <!--                              [mode]="'date'"-->
+            <!--                              (onOk)="onOk($event,'互检日期')">-->
+            <!--                        <label><span style="color: red">*</span>互检日期</label>-->
+            <!--                    </ListItem>-->
+            <!--                </List>-->
+            <!--            </ion-item>-->
+            <!--            Ionic组件 -->
+            <ion-item>
+                <ion-label class="label_color_size"><span style="color: red">*</span>互检日期</ion-label>
+                <ion-datetime doneText="完成" cancelText="取消" displayFormat="YYYY-MM-DD"
+                              cancelable="false" pickerFormat="YYYY-MM-DD"
+                              [(ngModel)]="putData.mutualchecktime"></ion-datetime>
+            </ion-item>
+        </CardBody>
+    </Card>
+
+    <div>
+        <ion-button [disabled]="!saveBtnState" class="bottom_button" expand="full" color="primary"
+                    (click)="processForm(putData)">保存
+        </ion-button>
+    </div>
+
+</ion-content>
+
+<!-- 页面没有加载出来时，显示骨架屏 -->
+<ion-content *ngIf="!currentPageData">
+    <!--    <app-skeleton-screen></app-skeleton-screen>-->
+    <app-loading></app-loading>
+</ion-content>

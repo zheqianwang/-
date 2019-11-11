@@ -1,0 +1,110 @@
+<!-- 工序交接 第二页 根据朱老师原型 -->
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-icon name="arrow-back" class="bar-btn" (click)="back()" slot="start"></ion-icon>
+        <ion-title
+                *ngIf="currentPageData">{{currentPageData.mdproject ? currentPageData.mdproject.name : ''}}</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content *ngIf="currentPageData">
+    <ion-card>
+        <ion-card-content class="card_content">
+            <ion-item>
+                <ion-label class="label_color_size left">项目信息</ion-label>
+                <ion-label
+                        class="label_size right">{{currentPageData.mdproject ? currentPageData.mdproject.name : '暂无'}}</ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-label class="label_color_size left">批次</ion-label>
+                <ion-label class="label_size right">{{currentPageData.batch ? currentPageData.batch : '暂无'}}</ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-label class="label_color_size left">产品信息</ion-label>
+                <ion-label
+                        class="label_size right">{{currentPageData.mdmaterials ? currentPageData.mdmaterials.code : '暂无'}}{{currentPageData.mdmaterials ? currentPageData.mdmaterials.name : '暂无'}}</ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-label class="label_color_size left">工序信息</ion-label>
+                <ion-label
+                        class="label_size right">{{currentPageData.opnum ? currentPageData.opnum : '暂无' }}{{currentPageData.opname ? currentPageData.opname : '暂无'}}
+                </ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-label class="label_color_size left">计划信息</ion-label>
+                <ion-label
+                        class="label_size right">{{currentPageData.planenddate ? currentPageData.planenddate : '暂无'}}</ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-label class="label_color_size left">数量</ion-label>
+                <ion-label class="label_size right">{{currentPageData.qty ? currentPageData.qty : '暂无'}}</ion-label>
+            </ion-item>
+
+        </ion-card-content>
+    </ion-card>
+    <ion-card>
+        <ion-card-content class="card_content">
+            <ion-item>
+                <ion-label class="label_color_size left"><span>*</span>移交人</ion-label>
+                <ion-select placeholder="请选择..." cancelText="取消" okText="确定" [(ngModel)]="putData.outmobdpersoninfo.id">
+                    <ion-select-option *ngFor="let h of help" [value]="h.id">{{h.name}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label class="label_color_size left"><span>*</span>移交数量</ion-label>
+                <ion-input class="input_style" name="handover_number" pattern="'^-?[1-9]\d*$'" placeholder="在此输入..."
+                           required inputmode="numeric" type="number"
+                           [(ngModel)]="putData.qty">
+                </ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label class="label_color_size left"><span>*</span>移入工序号</ion-label>
+                <ion-input class="input_style" name="move_in_process_id" placeholder="在此输入..." required
+                           inputmode="numeric"
+                           [(ngModel)]="putData.inopnum">
+                </ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label class="label_color_size left"><span>*</span>移入工序名称</ion-label>
+                <ion-input class="input_style" name="move_in_process_name" placeholder="在此输入..." required
+                           [(ngModel)]="putData.inopname">
+                </ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label class="label_color_size left">移入工作中心</ion-label>
+                <ion-input class="input_style" name="move_in_work_center" placeholder="在此输入..."
+                >
+                </ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label class="label_color_size left">移入班组</ion-label>
+                <ion-input class="input_style" name="move_in_group" placeholder="在此输入..."
+                >
+                </ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label class="label_color_size left"><span>*</span>接收人</ion-label>
+                <ion-select placeholder="请选择..." cancelText="取消" okText="确定" [(ngModel)]="putData.inmobdpersoninfo.id">
+                    <ion-select-option *ngFor="let h of help" [value]="h.id">{{h.name}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label class="label_color_size left"><span>*</span>备注</ion-label>
+                <ion-input class="input_style" name="remarks" placeholder="在此输入..." required
+                           [(ngModel)]="putData.note">
+                </ion-input>
+            </ion-item>
+        </ion-card-content>
+    </ion-card>
+    <div>
+        <ion-button [disabled]="!saveBtnState" class="bottom_button" expand="full" color="primary"
+                    (click)="processForm(putData)">
+            保存
+        </ion-button>
+    </div>
+</ion-content>
+
+<!-- 页面没有加载出来时，显示骨架屏 -->
+<ion-content *ngIf="!currentPageData">
+    <!--    <app-skeleton-screen></app-skeleton-screen>-->
+    <app-loading></app-loading>
+</ion-content>

@@ -1,0 +1,113 @@
+<!-- 二次报检 第二页 根据朱老师原型，用AntD组件实现 日期选择 -->
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-icon name="arrow-back" class="bar-btn" (click)="back()" slot="start"></ion-icon>
+        <ion-title *ngIf="currentPageData">{{currentPageData.projectid ? currentPageData.projectid : "暂无"}}</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="currentPageData">
+    <Card id="reportCard_customize" style="margin: 10px 24px;box-shadow: 0 4px 16px rgba(0,0,0,.12);">
+        <CardBody style="padding: 15px 6px 6px 0px;">
+            <ion-item>
+                <ion-label class="label_color_size left">项目信息</ion-label>
+                <ion-label
+                        class="label_size right">{{currentPageData.projectid ? currentPageData.projectid : '暂无'}}</ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-label class="label_color_size left">批量</ion-label>
+                <ion-label class="label_size right">{{currentPageData.batch ? currentPageData.batch : '暂无'}}</ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-label class="label_color_size left">产品信息</ion-label>
+                <ion-label
+                        class="label_size right">{{currentPageData.materialid ? currentPageData.materialid : '暂无'}}</ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-label class="label_color_size left">工序信息</ion-label>
+                <ion-label
+                        class="label_size right">{{currentPageData.qminspectrecords ? currentPageData.qminspectrecords.opnum : '暂无'}}{{currentPageData.qminspectrecords ? currentPageData.qminspectrecords.opname : '暂无'}}
+                </ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-label class="label_color_size left">计划日期</ion-label>
+                <ion-label
+                        class="label_size right">{{currentPageData.repairstarttime ? currentPageData.repairstarttime : '暂无'}}</ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-label class="label_color_size left">数量</ion-label>
+                <ion-label class="label_size right">{{currentPageData.qty ? currentPageData.qty : '暂无'}}</ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-label class="label_color_size left">自检人</ion-label>
+                <ion-label
+                        class="label_size right">{{currentPageData.repairworker ? currentPageData.repairworker.name : '暂无'}}</ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-label class="label_color_size left">自检日期</ion-label>
+                <ion-label class="label_size right">字段待定</ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-label class="label_color_size left">互检人</ion-label>
+                <ion-label class="label_size right">待定</ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-label class="label_color_size left">互检日期</ion-label>
+                <ion-label class="label_size right">字段待定</ion-label>
+            </ion-item>
+        </CardBody>
+    </Card>
+
+    <Card id="reportCard2_customize" style="margin: 10px 24px;box-shadow: 0 4px 16px rgba(0,0,0,.12);">
+        <CardBody style="padding: 15px 6px 6px 0px;">
+            <ion-item>
+                <ion-label class="label_color_size left"><span style="color: red;">*</span>检验人</ion-label>
+                <ion-select placeholder="请选择..." cancelText="取消" okText="确定" [(ngModel)]="putData.inspector.id">
+                    <ion-select-option *ngFor="let h of help" [value]="h.id">{{h.name}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <!--            AntD组件 -->
+            <!--            <ion-item style="width: 100%;">-->
+            <!--                <List class="date-picker-list" style="width: 100%;">-->
+            <!--                    <ListItem id="itemSizeAndColor" name="inspection_date" DatePicker-->
+            <!--                              [extra]="strToDate(putData.inspecttime)" [arrow]="'horizontal'" [mode]="'date'"-->
+            <!--                              (onOk)="onOk($event,'检验日期')">-->
+            <!--                        <label><span style="color: red">*</span>检验日期</label>-->
+            <!--                    </ListItem>-->
+            <!--                </List>-->
+            <!--            </ion-item>-->
+
+            <!--            Ionic组件 -->
+            <ion-item>
+                <ion-label class="label_color_size"><span style="color: red">*</span>检验日期</ion-label>
+                <ion-datetime doneText="完成" cancelText="取消" displayFormat="YYYY-MM-DD"
+                              cancelable="false" pickerFormat="YYYY-MM-DD"
+                              [(ngModel)]="putData.inspecttime"></ion-datetime>
+            </ion-item>
+            <ion-item>
+                <ion-label class="label_color_size left"><span style="color: red">*</span>检验结论</ion-label>
+                <ion-toggle color="primary" (ionChange)="toggleChange($event)"></ion-toggle>
+            </ion-item>
+            <ion-item>
+                <ion-label class="label_color_size left"><span style="color: red">*</span>检测值</ion-label>
+                <ion-button size="small" [routerLink]="['spreadjs']">点此录入检测值</ion-button>
+            </ion-item>
+
+        </CardBody>
+    </Card>
+    <div>
+        <ion-button class="bottom_button" expand="full" color="primary" (click)="processForm(putData)">保存
+        </ion-button>
+        <ion-button class="bottom_button" expand="full" color="light" (click)="rework(putDataRepair)">返工返修
+        </ion-button>
+        <ion-button class="bottom_button" expand="full" color="light" (click)="disqualification(putDateReject)">不合格品处理
+        </ion-button>
+    </div>
+</ion-content>
+
+
+<!-- 页面没有加载出来时，显示骨架屏 -->
+<ion-content *ngIf="!currentPageData">
+    <!--    <app-skeleton-screen></app-skeleton-screen>-->
+    <app-loading></app-loading>
+</ion-content>

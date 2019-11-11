@@ -1,0 +1,62 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-icon name="arrow-back" class="bar-btn" (click)="back()" slot="start"></ion-icon>
+        <ion-title>分析结果</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="currentPageData">
+
+    <Accordion [accordion]="true"
+               [defaultActiveKey]="'0'"
+               [activeKey]="activeKey"
+               (onChange)="onChange($event)"
+    >
+        <AccordionPanel *ngFor="let item of currentPageData; let i = index;"
+                        [key]="i" [header]="item.MATERIALNAME"
+        >
+            <ion-card style="margin: 0px;">
+                <ion-card-content class="card_content">
+                    <ion-item>
+                        <ion-label class="label_color_size left">物料编号</ion-label>
+                        <ion-label class="label_size right">{{item.MATERIALCODE}}</ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label class="label_color_size left">物料名称</ion-label>
+                        <ion-label class="label_size right">{{item.MATERIALNAME}}</ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label class="label_color_size left">需求日期</ion-label>
+                        <ion-label class="label_size right">{{timeFormatting(item.planstartDate)}}</ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label class="label_color_size left">需求数量</ion-label>
+                        <ion-label class="label_size right">{{item.requireqty}}</ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label class="label_color_size left">可用数量</ion-label>
+                        <ion-label class="label_size right">{{item.QTY}}</ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label class="label_color_size left">差异数量</ion-label>
+                        <ion-label class="label_size right">{{item.lackqty}}</ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label class="label_color_size left">库存数量</ion-label>
+                        <ion-label class="label_size right">{{item.STOCKQTY}}</ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label class="label_color_size left">在途数量</ion-label>
+                        <ion-label class="label_size right">{{item.AVIQTY}}</ion-label>
+                    </ion-item>
+                </ion-card-content>
+            </ion-card>
+        </AccordionPanel>
+    </Accordion>
+
+</ion-content>
+
+<ion-content *ngIf="!currentPageData">
+    <!--    <app-skeleton-screen [noData]="noData"></app-skeleton-screen>-->
+    <app-loading [noData]="noData"></app-loading>
+</ion-content>

@@ -1,0 +1,14 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-icon name="arrow-back" class="bar-btn" (click)="nav.pop()" slot="start"></ion-icon>
+        <ion-title>检测值录入</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <iframe id="iframe" class="iframe" height="100%" width="100%"
+            frameborder="no" border="0" marginwidth="0"
+            [src]="trustUrl(srcUrlParams)"
+    >
+    </iframe>
+</ion-content>
