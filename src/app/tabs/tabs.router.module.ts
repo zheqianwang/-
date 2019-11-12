@@ -18,26 +18,19 @@ const routes: Routes = [
                             import('../tab1/tab1.module').then(m => m.Tab1PageModule)
                     },
                     {
-                        path: 'fileReference',
+                        path: 'processStarts',
                         children: [
                             {
                                 path: '',
-                                loadChildren: () => import('../tab1/demo/file-reference/fileReference.module').then(m => m.FileReferencePageModule),
-                                data: {title: '文档查询'}
+                                loadChildren: () => import('../tab1/demo/process-starts/process-starts.module').then(m => m.ProcessStartsPageModule),
                             },
                             {
                                 path: 'add',
-                                loadChildren: () => import('../tab1/demo/file-reference/addOrEdit/add-file/add-file.module').then(m => m.AddFilePageModule),
-                                data: {title: '文档查询第二页'}
+                                loadChildren: () => import('../tab1/demo/process-starts/add-or-edit/add-or-edit.module').then(m => m.AddOrEditPageModule),
                             }
                         ],
-                        data: {title: '文档查阅'}
+                        data: {title: '工序开工'}
                     },
-                    // {
-                    //     path: 'demo2',
-                    //     loadChildren: () => import( '../tab1/demo/demo2/demo2.module').then(m => m.Demo2PageModule),
-                    //     data: {title: '工序报工'}
-                    // },
                     {
                         path: 'processReport',
                         children: [
@@ -54,123 +47,124 @@ const routes: Routes = [
                         data: {title: '工序报工'}
 
                     },
+
+                    /**
+                     * 下面这部分路由暂时在四院中用不到
+                     */
                     // {
-                    //     path: 'demo3',
-                    //     loadChildren: () => import('../tab1/demo/demo3/demo3.module').then(m => m.Demo3PageModule),
-                    //     data: { title: '工序检验' }
+                    //     path: 'fileReference',
+                    //     children: [
+                    //         {
+                    //             path: '',
+                    //             loadChildren: () => import('../tab1/demo/file-reference/fileReference.module').then(m => m.FileReferencePageModule),
+                    //             data: {title: '文档查询'}
+                    //         },
+                    //         {
+                    //             path: 'add',
+                    //             loadChildren: () => import('../tab1/demo/file-reference/addOrEdit/add-file/add-file.module').then(m => m.AddFilePageModule),
+                    //             data: {title: '文档查询第二页'}
+                    //         }
+                    //     ],
+                    //     data: {title: '文档查阅'}
                     // },
-                    {
-                        path: 'processHandover',
-                        children: [
-                            {
-                                path: '',
-                                loadChildren: () => import('../tab1/demo/process-handover/processHandover.module').then(m => m.ProcessHandoverPageModule),
-                                data: {title: '工序交接'}
-                            },
-                            {
-                                path: 'add',
-                                loadChildren: () => import('../tab1/demo/process-handover/addOrEdit/add-handover/add-handover.module').then(m => m.AddHandoverPageModule),
-                            }
-                        ],
-                        data: {title: '工序交接'}
-
-                    },
-                    {
-                        path: 'kittingAnalyze',
-                        children: [
-                            {
-                                path: '',
-                                loadChildren: () => import('../tab1/demo/kitting-analyze/kitting-analyze.module').then(m => m.KittingAnalyzePageModule),
-                                data: {title: '齐套分析'}
-                            },
-                            {
-                                path: 'add',
-                                loadChildren: () => import('../tab1/demo/kitting-analyze/addOrEdit/add-kitting/add-kitting.module').then(m => m.AddKittingPageModule),
-                                data: {title: '齐套分析第二页'}
-                            }
-                        ]
-                    },
-                    {
-                        path: 'processInspection',
-                        children: [
-                            {
-                                path: '',
-                                loadChildren: () => import('../tab1/demo/process-inspection/process-inspection.module').then(m => m.ProcessInspectionPageModule),
-                                data: {title: '工序检验'}
-                            },
-                            {
-                                path: 'add',
-                                children: [
-                                    {
-                                        path: '',
-                                        loadChildren: () => import('../tab1/demo/process-inspection/addOrEdit/add-inspection/add-inspection.module').then(m => m.AddInspectionPageModule),
-                                    },
-                                    {
-                                        path: 'spreadjs',
-                                        loadChildren: () => import('../tab1/demo/process-inspection/addOredit/spreadJS/spreadjs.module').then(m => m.SpreadjsPageModule),
-                                    }
-                                ]
-
-                            }
-                        ],
-                        data: {title: '工序检验'}
-
-                    },
-                    {
-                        path: 'secondaryInspection',
-                        children: [
-                            {
-                                path: '',
-                                loadChildren: () => import('../tab1/demo/secondary-inspection/secondary-inspection.module').then(m => m.SecondaryInspectionPageModule),
-                                data: {title: '二次报检'}
-                            },
-                            {
-                                path: 'add',
-                                children: [
-                                    {
-                                        path: '',
-                                        loadChildren: () => import('../tab1/demo/secondary-inspection/addOrEdit/add-secondary-inspection/add-secondary-inspection.module').then(m => m.AddSecondaryInspectionPageModule),
-                                    },
-                                    {
-                                        path: 'spreadjs',
-                                        loadChildren: () => import('../tab1/demo/process-inspection/addOredit/spreadJS/spreadjs.module').then(m => m.SpreadjsPageModule),
-                                    }
-                                ]
-                            }
-                        ],
-                        data: {title: '二次报检'}
-
-                    },
-                    {
-                        path: 'productionProgress',
-                        children: [
-                            {
-                                path: '',
-                                loadChildren: () => import('../tab1/demo/production-progress/production-progress.module').then(m => m.ProductionProgressPageModule),
-                                data: {title: '生产进度'}
-                            },
-                            {
-                                path: 'add',
-                                loadChildren: () => import('../tab1/demo/production-progress/addOrEdit/add-production-progress/add-production-progress.module').then(m => m.AddProductionProgressPageModule),
-                            }
-                        ],
-                        data: {title: '生产进度'}
-
-                    },
-                    {
-                        path: 'processStarts',
-                        children: [
-                            {
-                                path: '',
-                                loadChildren: () => import('../tab1/demo/process-starts/process-starts.module').then(m => m.ProcessStartsPageModule),
-                            },
-                            {
-                                path: 'add',
-                                loadChildren: () => import('../tab1/demo/process-starts/add-or-edit/add-or-edit.module').then(m => m.AddOrEditPageModule),
-                            }
-                        ],
-                        data: {title: '工序开工'}
-                    },
+                    // {
+                    //     path: 'processHandover',
+                    //     children: [
+                    //         {
+                    //             path: '',
+                    //             loadChildren: () => import('../tab1/demo/process-handover/processHandover.module').then(m => m.ProcessHandoverPageModule),
+                    //             data: {title: '工序交接'}
+                    //         },
+                    //         {
+                    //             path: 'add',
+                    //             loadChildren: () => import('../tab1/demo/process-handover/addOrEdit/add-handover/add-handover.module').then(m => m.AddHandoverPageModule),
+                    //         }
+                    //     ],
+                    //     data: {title: '工序交接'}
+                    //
+                    // },
+                    // {
+                    //     path: 'kittingAnalyze',
+                    //     children: [
+                    //         {
+                    //             path: '',
+                    //             loadChildren: () => import('../tab1/demo/kitting-analyze/kitting-analyze.module').then(m => m.KittingAnalyzePageModule),
+                    //             data: {title: '齐套分析'}
+                    //         },
+                    //         {
+                    //             path: 'add',
+                    //             loadChildren: () => import('../tab1/demo/kitting-analyze/addOrEdit/add-kitting/add-kitting.module').then(m => m.AddKittingPageModule),
+                    //             data: {title: '齐套分析第二页'}
+                    //         }
+                    //     ]
+                    // },
+                    // {
+                    //     path: 'processInspection',
+                    //     children: [
+                    //         {
+                    //             path: '',
+                    //             loadChildren: () => import('../tab1/demo/process-inspection/process-inspection.module').then(m => m.ProcessInspectionPageModule),
+                    //             data: {title: '工序检验'}
+                    //         },
+                    //         {
+                    //             path: 'add',
+                    //             children: [
+                    //                 {
+                    //                     path: '',
+                    //                     loadChildren: () => import('../tab1/demo/process-inspection/addOrEdit/add-inspection/add-inspection.module').then(m => m.AddInspectionPageModule),
+                    //                 },
+                    //                 {
+                    //                     path: 'spreadjs',
+                    //                     loadChildren: () => import('../tab1/demo/process-inspection/addOredit/spreadJS/spreadjs.module').then(m => m.SpreadjsPageModule),
+                    //                 }
+                    //             ]
+                    //
+                    //         }
+                    //     ],
+                    //     data: {title: '工序检验'}
+                    //
+                    // },
+                    // {
+                    //     path: 'secondaryInspection',
+                    //     children: [
+                    //         {
+                    //             path: '',
+                    //             loadChildren: () => import('../tab1/demo/secondary-inspection/secondary-inspection.module').then(m => m.SecondaryInspectionPageModule),
+                    //             data: {title: '二次报检'}
+                    //         },
+                    //         {
+                    //             path: 'add',
+                    //             children: [
+                    //                 {
+                    //                     path: '',
+                    //                     loadChildren: () => import('../tab1/demo/secondary-inspection/addOrEdit/add-secondary-inspection/add-secondary-inspection.module').then(m => m.AddSecondaryInspectionPageModule),
+                    //                 },
+                    //                 {
+                    //                     path: 'spreadjs',
+                    //                     loadChildren: () => import('../tab1/demo/process-inspection/addOredit/spreadJS/spreadjs.module').then(m => m.SpreadjsPageModule),
+                    //                 }
+                    //             ]
+                    //         }
+                    //     ],
+                    //     data: {title: '二次报检'}
+                    //
+                    // },
+                    // {
+                    //     path: 'productionProgress',
+                    //     children: [
+                    //         {
+                    //             path: '',
+                    //             loadChildren: () => import('../tab1/demo/production-progress/production-progress.module').then(m => m.ProductionProgressPageModule),
+                    //             data: {title: '生产进度'}
+                    //         },
+                    //         {
+                    //             path: 'add',
+                    //             loadChildren: () => import('../tab1/demo/production-progress/addOrEdit/add-production-progress/add-production-progress.module').then(m => m.AddProductionProgressPageModule),
+                    //         }
+                    //     ],
+                    //     data: {title: '生产进度'}
+                    //
+                    // },
 
                 ]
             },

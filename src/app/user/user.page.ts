@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AlertController} from '@ionic/angular';
 import {Storage} from '@ionic/storage';
-// import {LoginService} from '@inspur/scmpub';
 import {UrlService} from '../url.service';
 import {ToastService} from 'ng-zorro-antd-mobile';
 
@@ -21,7 +20,6 @@ export class UserPage implements OnInit {
         private route: ActivatedRoute,
         public alertController: AlertController,
         private storage: Storage,
-        // private  loginService: LoginService,
         private url: UrlService
     ) {
     }
@@ -73,9 +71,10 @@ export class UserPage implements OnInit {
     //
     // }
 
-    // 军工后端登录接口的返回值
+    // 四院后端登录接口的返回值
     ionViewWillEnter() {
-        const res = localStorage['userinfo'];
+        const res = localStorage['userInfo'];
+        console.log('res= ', JSON.parse(res));
         if (res) {
             this.userLogin = true;
             this.loginResUserInformation = JSON.parse(res);

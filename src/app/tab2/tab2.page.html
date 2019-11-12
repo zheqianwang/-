@@ -3,70 +3,13 @@
         <ion-title>
             通讯录
         </ion-title>
+        <ion-icon name="qr-scanner" class="bar-btn" slot="end" (click)="scan()"></ion-icon>
         <!--        <ion-icon name="more" class="bar-btn" slot="end" (click)="presentPopover($event)"></ion-icon>-->
     </ion-toolbar>
 </ion-header>
 
+<ion-content>
 
-<!-- 第三版，朱老师设计 -->
-<!--<ion-content *ngIf="viewList">-->
-<!--    <ion-card *ngFor="let item of viewList" (click)="skip(item)"-->
-<!--              style="margin: 5px 16px;">-->
-<!--        <ion-card-header>-->
-<!--            <ion-label-->
-<!--                    style="width: 60%; float: left; font-size: 17px; color: #082744;font-family: Arial,Verdana,Sans-serif">-->
-<!--                <b>{{item.project ? item.project.name : '暂无'}}</b>-->
-<!--            </ion-label>-->
-<!--            <ion-label style="width: 40%; float: right; text-align: right;font-size: 12px;color: #98a4b3;">-->
-<!--                &lt;!&ndash;                    原来的（11月7号之前的）&ndash;&gt;-->
-<!--                &lt;!&ndash;                    {{item.opnum}}{{item.opname}}-{{item.qty}}件&ndash;&gt;-->
-<!--                &lt;!&ndash;                    最新的（11月7号修改的）&ndash;&gt;-->
-<!--                {{item.project ? item.project.name : '暂无'}}{{item.projectwbs ? item.projectwbs.name : '暂无'}}-->
-<!--                -{{item.qty}}件-->
-<!--            </ion-label>-->
-<!--        </ion-card-header>-->
-<!--        <ion-card-content style="padding: 10px 20px;">-->
-<!--            &lt;!&ndash;                原来的（11月7号之前）&ndash;&gt;-->
-<!--            &lt;!&ndash;                <ion-label>&ndash;&gt;-->
-<!--            &lt;!&ndash;                    <span style="width: 60%; float: left;font-size: 14px;color: #98a4b3;">{{item.orderno}}</span>&ndash;&gt;-->
-<!--            &lt;!&ndash;                    <span *ngIf="item.productionstate == '0'"&ndash;&gt;-->
-<!--            &lt;!&ndash;                          style="width: 40%; float: right; text-align: right;font-size: 14px;color: #F3B100;">待开工</span>&ndash;&gt;-->
-<!--            &lt;!&ndash;                    <span *ngIf="item.productionstate == '1'"&ndash;&gt;-->
-<!--            &lt;!&ndash;                          style="width: 40%; float: right; text-align: right;font-size: 14px; color: #15B165;">加工中</span>&ndash;&gt;-->
-<!--            &lt;!&ndash;                    <span *ngIf="item.productionstate == '2'"&ndash;&gt;-->
-<!--            &lt;!&ndash;                          style="width: 40%; float: right; text-align: right;font-size: 14px;color: #F3B100;">暂停</span>&ndash;&gt;-->
-<!--            &lt;!&ndash;                    <span *ngIf="item.productionstate == '3'"&ndash;&gt;-->
-<!--            &lt;!&ndash;                          style="width: 40%; float: right; text-align: right;font-size: 14px;color: #F3B100;">报工</span>&ndash;&gt;-->
-<!--            &lt;!&ndash;                    <span *ngIf="item.productionstate == '4'"&ndash;&gt;-->
-<!--            &lt;!&ndash;                          style="width: 40%; float: right; text-align: right;font-size: 14px;color: #F3B100;">完工</span>&ndash;&gt;-->
-<!--            &lt;!&ndash;                    <span *ngIf="item.productionstate == null"&ndash;&gt;-->
-<!--            &lt;!&ndash;                          style="width: 40%; float: right; text-align: right;font-size: 14px;color: #F3B100;">暂无</span>&ndash;&gt;-->
-<!--            &lt;!&ndash;                </ion-label>&ndash;&gt;-->
-<!--            &lt;!&ndash;                新改的（11月7号改的）&ndash;&gt;-->
-<!--            <ion-label>-->
-<!--                <span style="width: 60%; float: left;font-size: 14px;color: #98a4b3;">{{item.orderno}}</span>-->
-<!--                <span *ngIf="item.issuedstate == '0' || item.issuedstate === 'undefined' || item.issuedstate == undefined"-->
-<!--                      style="width: 40%; float: right; text-align: right;font-size: 14px;color: #F3B100;">待发布</span>-->
-<!--                <span *ngIf="item.issuedstate == '1'"-->
-<!--                      style="width: 40%; float: right; text-align: right;font-size: 14px; color: #15B165;">已发布</span>-->
-<!--            </ion-label>-->
-<!--            <ion-label style="font-size: 12px; color: #bbc2ca;">-->
-<!--                {{item.materials ? item.materials.name : '暂无'}}&nbsp;/&nbsp;{{item.batch ? item.batch : '暂无'}}&nbsp;/&nbsp;{{item.planenddate | date:'yyyy-MM-dd' }}-->
-<!--            </ion-label>-->
-<!--        </ion-card-content>-->
-<!--    </ion-card>-->
-
-<!--    <ion-infinite-scroll (ionInfinite)="doInfinite($event)" threshold="0%">-->
-<!--        <ion-infinite-scroll-content loadingSpinner="{{loadingSpinner}}"-->
-<!--                                     loadingText="{{loadingMoreText}}"></ion-infinite-scroll-content>-->
-<!--    </ion-infinite-scroll>-->
-
-<!--</ion-content>-->
-
-<!-- 页面没有加载出来时，显示骨架屏 -->
-<ion-content *ngIf="!viewList">
-    <!--        <app-skeleton-screen [noData]="noData"></app-skeleton-screen>-->
-    <app-loading [noData]="noData"></app-loading>
 </ion-content>
 
 

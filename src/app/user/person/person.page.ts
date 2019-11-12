@@ -17,7 +17,7 @@ export class PersonPage implements OnInit {
     }
 
     ngOnInit() {
-        this.personDetail = JSON.parse(localStorage['userinfo']);
+        this.personDetail = JSON.parse(localStorage['userInfo']);
         console.log('this.personDetail = ', this.personDetail);
     }
 
